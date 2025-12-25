@@ -2,11 +2,11 @@
 This repository consists of infrastructure definitions and code to create an investment analytics site with a community.
 
 ## Infrastructure
-### Postgres and Liquibase
+### Postgres
 We use a Postgres image from the Dockerhub, so there is no need to build for this step.
-To enact the database design, we use Liquibase. We write SQL statements and changelogs. The data stored in the database will consist of user accounts, metadata for user posts, and metadata for scraping job runs.
+The data stored in the database will consist of user accounts, metadata for user posts, and metadata for scraping job runs.
 ### MinIO
-For object storage, we use MinIO. The content will consist of the data for user profiles and posts and the data collected from scraping job runs.
+For object storage, we use MinIO, again a Dockerhub image. The content will consist of the data for user profiles and posts and the data collected from scraping job runs.
 ### Redis
 TODO
 
