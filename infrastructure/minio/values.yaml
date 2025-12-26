@@ -3,5 +3,4 @@ app:
 
 storage:
   size: 10Gi # IF SUPPORTED BY STORAGE CLASS, PVCs CAN BE MANUALLY RESIZED AFTER INITIAL RELEASE!
-  volumeName: "minio"
   mountPath: "/pvc"

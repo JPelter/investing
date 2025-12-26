@@ -61,7 +61,7 @@ spec:
       restartPolicy: Always
   volumeClaimTemplates:
     - metadata:
-        name: {{ $.Values.storage.volumeName}}
+        name: data
       spec:
         accessModes: [ ReadWriteOnce ]
         resources:
