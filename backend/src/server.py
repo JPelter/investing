@@ -15,7 +15,7 @@ else:
     app.logger.setLevel(logging.INFO)
 
 
-@app.route("/")
+@app.route("/api")
 def hello():
 	return "Hello, World!"
 
