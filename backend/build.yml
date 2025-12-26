@@ -18,7 +18,7 @@ jobs:
     displayName: BuildAndPush
     inputs:
       command: buildAndPush
-      repository: jakepelter/investing-backend
+      repository: jpelter/investing-backend
       dockerfile: backend/Dockerfile
       containerRegistry: 'pelter-gmail-dockerhub'
       tags: $(Build.BuildId)

@@ -16,7 +16,7 @@ spec:
       - name: pelter-gmail-dockerhub
       containers:
       - name: {{ .Release.Name }}
-        image: docker.io/jakepelter/investing-backend:{{ .Values.imageTag }}
+        image: docker.io/jpelter/investing-backend:{{ .Values.imageTag }}
         ports:
         - containerPort: 5000
         env:
