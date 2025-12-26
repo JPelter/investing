@@ -52,7 +52,7 @@ spec:
             - name: MINIO_CONSOLE_ADDRESS
               value: ":{{ .Values.app.consolePort }}"
           volumeMounts:
-            - name: {{ $.Values.storage.volumeName}}
+            - name: data
               mountPath: {{ $.Values.storage.mountPath}}
           command:
           - sh
