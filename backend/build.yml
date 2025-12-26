@@ -1,0 +1,28 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - feature/*
+    - main
+  paths:
+    include:
+    - backend/*
+
+jobs:
+- job: BuildAndPush
+  displayName: Docker build and push
+  pool:
+    name: Azure Pipelines
+  steps:
+  - task: Docker@2
+    displayName: BuildAndPush
+    inputs:
+      command: buildAndPush
+      repository: jakepelter/investing-backend
+      dockerfile: backend/Dockerfile
+      containerRegistry: 'pelter-gmail-dockerhub'
+      tags: $(Build.BuildId)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: backend
+      artifactName: 'drop'
