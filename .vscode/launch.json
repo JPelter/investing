@@ -8,11 +8,11 @@
             "type": "node-terminal"
         },
         {
-            "envFile": "${workspaceFolder}\\backend\\flask-api\\src\\.env",
+            "envFile": "${workspaceFolder}\\backend\\src\\.env",
             "name": "Web API",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}\\backend\\flask-api\\src\\server.py",
+            "program": "${workspaceFolder}\\backend\\src\\server.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

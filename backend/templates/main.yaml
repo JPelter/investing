@@ -34,6 +34,11 @@ spec:
               key: minio-password
         - name: MINIO_HOST
           value: {{ .Values.minioHost }}
+        - name: FLASK_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dev-investing
+              key: flask-secret-key
 ---
 apiVersion: v1
 kind: Service
