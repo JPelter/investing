@@ -1,0 +1,22 @@
+CREATE TABLE account (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(20) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE post (
+    id VARCHAR(36) PRIMARY KEY,
+    poster_id VARCHAR(36) REFERENCES account(id),
+    url VARCHAR(100) UNIQUE NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE comment (
+    id VARCHAR(36) PRIMARY KEY,
+    post_id VARCHAR(36) REFERENCES post(id),
+    commenter_id VARCHAR(36) REFERENCES account(id),
+    content VARCHAR(1000) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
