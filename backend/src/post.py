@@ -29,7 +29,7 @@ def create_post():
 def get_posts():
     page = request.args.get("page", default=0, type=int)
     offset = page * 20
-    posts = Post.query.order_by(Post.created_at.asc()).limit(20).offset(offset).all()
+    posts = Post.query.order_by(Post.created_at.desc()).limit(20).offset(offset).all()
     post_list = [{"id": post.id, "url": post.url, "title": post.title, "poster_id": post.poster_id, "created_at": post.created_at} for post in posts]
     current_app.logger.info("Posts retrieved")
     return jsonify({"posts": post_list}), 200
