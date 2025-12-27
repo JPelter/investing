@@ -1,6 +1,7 @@
 # STL IMPORTS
 import re
 # INT IMPORTS
+from auth import login_required
 from db import db
 from models import Account
 # EXT IMPORTS
@@ -55,3 +56,8 @@ def logout_account():
     else:
         current_app.logger.info("Logout attempt with no active session")
         return jsonify({"error": "No active session"}), 400
+    
+@account_bp.route("/check-login", methods=["GET"])
+@login_required()
+def check_login():
+        return jsonify({"message": "Logged in"}), 200
