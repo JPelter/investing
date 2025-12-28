@@ -9,16 +9,17 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>
-        <div style={{ padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <header style={{ padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div><b>Stacker News</b></div>
           <div style={{ display: 'flex', gap: '10px' }}>
             <div>Account</div>
             <div>FILLER CONTENT</div>
           </div>
-        </div>
+        </header>
         <Routes>
           <Route path="/" element={<App />} />
         </Routes>
+        <footer>I am the footer!</footer>
       </BrowserRouter>
   </React.StrictMode>
 );
