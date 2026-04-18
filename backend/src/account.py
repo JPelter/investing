@@ -1,6 +1,7 @@
 # STL IMPORTS
 import re
 # INT IMPORTS
+from auth import login_required
 from db import db
 from models import Account
 # EXT IMPORTS
@@ -26,10 +27,12 @@ def create_account():
     acct = Account(name=name, password_hash=generate_password_hash(password))
     db.session.add(acct)
     db.session.commit()
+    session['account_id'] = acct.id
+    session['name'] = acct.name
     current_app.logger.info(f"Created new account: {name}")
     return jsonify({"id": acct.id}), 201
 
-@account_bp.route("/login", methods=["GET"])
+@account_bp.route("/login", methods=["POST"])
 def login_account():
     data = request.get_json()
     name = data['name']
@@ -55,3 +58,8 @@ def logout_account():
     else:
         current_app.logger.info("Logout attempt with no active session")
         return jsonify({"error": "No active session"}), 400
+    
+@account_bp.route("/check-login", methods=["GET"])
+@login_required()
+def check_login():
+        return jsonify({"message": "Logged in", "name": session.get('name')}), 200

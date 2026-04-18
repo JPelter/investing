@@ -1,15 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Registration from './account/registration';
+import Login from './account/login';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import apiCall from './utils/api';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+function MainApp() {
+  const [logged_in, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    apiCall('/account/check-login')
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json().then((data) => {
+            setLoggedIn(true);
+            if (data.name) {
+              setUsername(data.name);
+              console.log('Logged in as:', data.name);
+            }
+            setLoading(false);
+          });
+        }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await apiCall('/account/logout', { method: 'GET' });
+      setLoggedIn(false);
+      setUsername('');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <header style={{ padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}><b>Stacker News</b></Link>
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            { logged_in ? (
+              <>
+                <div>{username}</div>
+                <button onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/register" style={{ textDecoration: 'none' }}><button>Register</button></Link>
+                <Link to="/login" style={{ textDecoration: 'none' }}><button>Login</button></Link>
+              </>
+            )}
+          </div>
+        </header>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/register" element={<Registration setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
+        </Routes>
+        <footer>I am the footer!</footer>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+}
+
+root.render(<MainApp />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

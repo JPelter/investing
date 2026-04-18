@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Stacker News",
+  "name": "The place for business news and discussion",
   "icons": [
     {
       "src": "favicon.ico",

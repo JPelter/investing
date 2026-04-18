@@ -17,8 +17,9 @@ app.register_blueprint(account_bp)
 app.register_blueprint(post_bp)
 
 if environ.get('LOCAL') == "TRUE":
-    from flask_cors import CORS
     app.logger.setLevel(logging.DEBUG)
+    app.logger.info('Running in local mode!')
+    from flask_cors import CORS
     CORS(app, supports_credentials=True)
     app.config['CORS_HEADERS'] = 'Content-Type'
 else:
