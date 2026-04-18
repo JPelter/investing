@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Registration from './account/registration';
 import Login from './account/login';
+import CreatePostPage from './posts/CreatePostPage';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import apiCall from './utils/api';
@@ -51,6 +52,7 @@ function MainApp() {
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             { logged_in ? (
               <>
+                <Link to="/create-post" style={{ textDecoration: 'none' }}><button>Create Post</button></Link>
                 <div>{username}</div>
                 <button onClick={handleLogout}>Logout</button>
               </>
@@ -66,6 +68,7 @@ function MainApp() {
           <Route path="/" element={<App />} />
           <Route path="/register" element={<Registration setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
+          <Route path="/create-post" element={<CreatePostPage />} />
         </Routes>
         <footer>I am the footer!</footer>
       </BrowserRouter>
