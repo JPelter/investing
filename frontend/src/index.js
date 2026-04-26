@@ -70,7 +70,9 @@ function MainApp() {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
           <Route path="/create-post" element={<CreatePostPage />} />
         </Routes>
-        <footer>I am the footer!</footer>
+        <footer style={{ textAlign: 'center', padding: '10px' }}>
+          © {new Date().getFullYear()} MT Cloud
+        </footer>
       </BrowserRouter>
     </React.StrictMode>
   );
