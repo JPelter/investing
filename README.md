@@ -1,5 +1,5 @@
 # Introduction
-This repository consists of infrastructure definitions and code to create an investment analytics site with a community.
+This repository consists of infrastructure definitions and code to create an investment discussion community.
 
 ## Infrastructure
 ### Postgres
@@ -10,6 +10,6 @@ For object storage, we use MinIO, again a Dockerhub image. The content will cons
 
 ## Code
 ### Backend
-To enable access to the data and interactions in the forum, we have a Python Flask API. This API enables creating a user account, logging into an account to get a session cookie, and then using that cookie to interact with authenticated endpoints (like stock analytics tools).
+To enable access to the data and interactions in the forum, we have a Python Flask API. This API enables creating a user account, logging into an account to get a session cookie, and then using that cookie to interact with authenticated endpoints (like to create a post)
 ### Frontend
-The frontend UI is built with React. It consists of a landing page which displays near real-time data, the latest posts from the forum, and links to news stories with short descriptions.
+The frontend UI is built with React. It consists of a feed of posts with pages to create an account or post.
