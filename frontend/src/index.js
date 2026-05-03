@@ -14,7 +14,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 function MainApp() {
   const [logged_in, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     apiCall('/account/check-login')
@@ -26,12 +25,9 @@ function MainApp() {
               setUsername(data.name);
               console.log('Logged in as:', data.name);
             }
-            setLoading(false);
           });
         }
-        setLoading(false);
       })
-      .catch(() => setLoading(false));
   }, []);
 
   const handleLogout = async () => {
@@ -48,7 +44,10 @@ function MainApp() {
     <React.StrictMode>
       <BrowserRouter>
         <header style={{ padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}><b>Stacker News</b></Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <img src="/logo192.png" alt="App Icon" style={{ height: '32px', width: '32px' }} />
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}><b>Stacker News</b></Link>
+          </div>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             { logged_in ? (
               <>
