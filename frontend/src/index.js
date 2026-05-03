@@ -69,7 +69,7 @@ function MainApp() {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
           <Route path="/create-post" element={<CreatePostPage />} />
         </Routes>
-        <footer style={{ textAlign: 'center', padding: '10px' }}>
+        <footer style={{ textAlign: 'center', padding: '10px', backgroundColor: '#f0f0f0' }}>
           © {new Date().getFullYear()} MT Cloud
         </footer>
       </BrowserRouter>
